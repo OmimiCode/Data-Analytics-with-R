@@ -1,0 +1,68 @@
+---
+title: "Untitled"
+author: "solutionCraftsman"
+date: "3/12/2021"
+output: html_document
+---
+
+```{r}
+#Load Data
+dt = read.table("data_r/who_1.csv", header = T, sep=",")
+head(dt)
+```
+
+```{r}
+#Load Data
+dt1 = read.table("data_r/auto.txt", header = F, sep=",")
+# head(dt1)
+# head(dt1, 10)
+names(dt1) = c("Cyl", "Miles", "Model", "Fuel")
+dt1[1:10, 1:4]
+```
+
+```{r}
+#Load Data
+dt2 = read.table("data_r/potatoes.txt", header = F, sep="\t")
+# names(dt1) = c("Cyl", "Miles", "Model", "Fuel")
+dt2[1:10, 1:4]
+```
+
+```{r}
+#Load Data
+dt3 = read.csv("data_r/who_1.csv", header = FALSE)
+dt3[1:4, 1:4]
+```
+
+```{r}
+#Load Data
+# dt4 = read.table("data_r/who_2_semi.csv", header = F, sep=";")
+dt4 = read.csv2("data_r/who_2_semi.csv", header = TRUE)
+dt4[1:4, 1:4]
+```
+
+```{r}
+#Load Data
+dt5 = read.delim("data_r/potatoes.txt", header = F)
+dt5[1:4, ]
+```
+```{r}
+library(readxl)
+sht1 = read_excel("data_r/Employees.xlsx", sheet = 1)
+sht2 <- read_excel("data_r/Employees.xlsx", sheet = 2)
+sht1[1:4, 1:4]
+```
+
+```{r}
+library(DBI)
+library(RMySQL)
+host <- "courses.csrrinzqubik.us-east-1.rds.amazonaws.com"
+connect <- dbConnect(RMySQL::MySQL(), dbname = "tweater", host = host, port = 3306, user = "student", password = "datacamp")
+
+tables = dbListTables(connect) 
+tables
+```
+
+
+
+
+

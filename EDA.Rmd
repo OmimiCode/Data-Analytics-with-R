@@ -1,0 +1,117 @@
+---
+title: "EDA"
+author: "Olugbenga"
+date: "19/03/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+gy <- read.csv("data_r/gym.csv", header = T,)
+glimpse(gy)
+```
+```{r}
+gy$Product<-as.factor(gy$Product)
+gy$Gender<-as.factor(gy$Gender)
+gy$MaritalStatus<-as.factor(gy$MaritalStatus)
+glimpse(gy)
+```
+```{r}
+ggplot(gy, aes(x = Product, fill = Product)) + geom_bar() +labs(title = "Products Distribution", x = "Product", y = "Frequency") + geom_text(stat = 'count', aes(label=..count..), vjust =-0.3)
+```
+
+```{r}
+b2 <- ggplot(gy, aes(x = Gender, fill = Gender)) + geom_bar() +labs(title = "Products Distribution", x = "Product", y = "Frequency") + geom_text(stat = 'count', aes(label=..count..), vjust =-0.3)
+b2
+```
+```{r}
+library(gridExtra)
+library(scales)
+p1<-ggplot(gy, aes(x = Income)) +
+geom_histogram(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Histogram of Income",
+x="Income",y="Frequency")
+p2<- ggplot(gy, aes(x = Income)) +
+geom_boxplot(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Boxplot of Income",x="Income")
+p1
+p2
+```
+```{r}
+hist(log(gy $Income))
+
+```
+
+
+```{r}
+
+library(gridExtra)
+library(scales)
+p3<-ggplot(gy, aes(x = Education)) +
+geom_histogram(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Histogram of Education",
+x="Education",y="Frequency")
+p4<- ggplot(gy, aes(x = Education)) +
+geom_boxplot(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Boxplot of Education",x="Education")
+p1
+p2
+```
+
+
+
+```{r}
+library(gridExtra)
+library(scales)
+p5<-ggplot(gy, aes(x = Age)) +
+geom_histogram(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Histogram of Age",
+x="Age",y="Frequency")
+p6<- ggplot(gy, aes(x = Age)) +
+geom_boxplot(color = "black", fill = "gray")+
+scale_x_continuous(labels = comma)+
+labs(title = "Boxplot of Age",x="Age")
+p5 
+p6
+```
+```{r}
+bi1 <- ggplot(gy, aes(x=Product, y=Age, fill=Product)) +
+geom_boxplot()+
+labs(x= "Product", y= "Age",title="Product by Age")
+bi1
+```
+```{r}
+bi7<- ggplot(gy, aes(x = Age, y= Income)) + geom_point()+
+scale_y_continuous(labels = comma)+
+labs(x= "Age", y= "Incomes",
+title="Income By Age")
+bi7
+```
+```{r}
+data <- c(17,16, 20, 18, 16, 19, 22, 13 ,
+15 ,17 ,21, 14, 18, 12)
+
+sd(data)
+sqrt(14)
+```
+```{r}
+data2 <- read.csv("data_r/class.csv", header = T)
+str(data2)
+result2<-t.test(data2$MorningClass, data2$EveningClass,
+alternative = "greater")```
+
+```
+
+
+
+```{r}
+gy <- read.csv("data_r/gym.csv", header = T,)
+glimpse(gy)
+result <- t.test(gy$Age~gy$MaritalStatus, alternative = "two.sided")
+result
+```
